@@ -59,11 +59,3 @@
     background: #ccc;
     border-radius: 10px;
 }
-
-.gemini-nav-highlight {
-    outline: 2px solid rgba(26, 115, 232, 0.6);
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(26, 115, 232, 0.45);
-    background: rgba(26, 115, 232, 0.08);
-    transition: outline 0.2s ease, box-shadow 0.2s ease;
-}

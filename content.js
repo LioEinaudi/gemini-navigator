@@ -1,8 +1,7 @@
 // 记录上一次获取到的提问数量，避免重复渲染
 let lastQuestionCount = 0;
-let activeQuestionNode = null;
+let activeQuestionElement = null;
 let activeNavItem = null;
-const HIGHLIGHT_CLASS = 'gemini-nav-highlight';
 const NAV_ACTIVE_CLASS = 'nav-item-active';
 
 function createSidebar() {
@@ -19,27 +18,19 @@ function createSidebar() {
 function getQuestionText(questionElement) {
     const textSource = questionElement.querySelector('.query-content, .user-query-container, user-query-content');
     const rawText = textSource ? textSource.innerText : questionElement.innerText;
-    return (rawText || '（空提问）').trim().replace(/\s+/g, ' ');
-}
-
-function getHighlightTarget(questionElement) {
-    return questionElement.querySelector('.query-content, .user-query-container') || questionElement;
-}
-
-function activateQuestion(questionElement, navItem) {
-    const highlightTarget = getHighlightTarget(questionElement);
-    if (!highlightTarget) return;
-
-    if (activeQuestionNode && activeQuestionNode !== highlightTarget) {
-        activeQuestionNode.classList.remove(HIGHLIGHT_CLASS);
+    let normalized = (rawText || '（空提问）').trim().replace(/\s+/g, ' ');
+    if (normalized.startsWith('你说')) {
+        normalized = normalized.replace(/^你说[:：]?\s*/u, '');
     }
+    return normalized || '（空提问）';
+}
+
+function activateNav(questionElement, navItem) {
+    activeQuestionElement = questionElement;
     if (activeNavItem && activeNavItem !== navItem) {
         activeNavItem.classList.remove(NAV_ACTIVE_CLASS);
     }
-
-    highlightTarget.classList.add(HIGHLIGHT_CLASS);
     navItem.classList.add(NAV_ACTIVE_CLASS);
-    activeQuestionNode = highlightTarget;
     activeNavItem = navItem;
 }
 
@@ -64,15 +55,15 @@ function updateNavigation() {
         const item = document.createElement('div');
         item.className = 'nav-item';
         const label = getQuestionText(questionElement);
-        const truncated = label.length > 30 ? `${label.substring(0, 30)}…` : label;
+        const truncated = label.length > 30 ? label.substring(0, 30) + '…' : label;
         item.innerText = truncated;
         item.title = label;
         item.addEventListener('click', () => {
             scrollToQuestion(questionElement);
-            activateQuestion(questionElement, item);
+            activateNav(questionElement, item);
         });
 
-        if (activeQuestionNode && activeQuestionNode === getHighlightTarget(questionElement)) {
+        if (activeQuestionElement && activeQuestionElement === questionElement) {
             item.classList.add(NAV_ACTIVE_CLASS);
             activeNavItem = item;
         }
