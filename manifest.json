@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "Gemini Navigator",
+    "version": "1.0.0",
+    "description": "为 Gemini 对话添加右侧导航目录，快速跳转到历史提问。",
+    "permissions": [
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://gemini.google.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "style.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "icons": {
+        "128": "icon.png"
+    }
+}
