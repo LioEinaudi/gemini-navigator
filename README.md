@@ -1,19 +1,21 @@
 # Gemini Navigator
 
-一个简单的 Chrome 扩展，为 Google Gemini 网页版添加提问导航侧边栏。
+A lightweight Chrome extension that adds a navigation sidebar for your prompts on the Google Gemini web interface.
 
-## 背景
-Gemini 里的对话越聊越长，想回到之前的某个提问时需要不停滚动，效率极低。这个扩展把每条历史提问聚合到右侧导航，点一下就能跳回对应位置，让长对话的检索更快。
+## Background
 
-## 功能
-- **快速跳转**：点击侧边栏直接定位到你的某次提问。
-- **智能悬浮**：默认收缩在右侧，鼠标悬停时自动展开。
-- **实时同步**：随着对话的进行，自动更新导航列表。
+As conversations in Gemini grow longer, finding a specific previous prompt requires endless scrolling, which is highly inefficient. This extension aggregates all your historical prompts into a right-side navigation bar. One click jumps you directly to the corresponding message, making long-form chats much easier to manage.
 
-## 安装方法
-1. 下载本项目到本地。
-2. 打开 Chrome 浏览器，访问 chrome://extensions/。
-3. 开启右上角的 **“开发者模式”**。
-4. 点击 **“加载已解压的扩展程序”或者“加载未打包的扩展程序“**，选择本项目文件夹。
-5. 刷新 Gemini 页面即可使用。
-    
+## Features
+
+* **Instant Jump**: Click any prompt in the sidebar to scroll directly to that position.
+* **Smart Hover**: Stays tucked away on the right by default and automatically expands when you hover over it.
+* **Real-time Sync**: Automatically updates the navigation list as the conversation progresses.
+
+## Installation
+
+1. Download this project to your local machine.
+2. Open Chrome and navigate to `chrome://extensions/`.
+3. Enable **"Developer mode"** in the top right corner.
+4. Click **"Load unpacked"** and select the project folder.
+5. Refresh the Gemini page to start using it.
